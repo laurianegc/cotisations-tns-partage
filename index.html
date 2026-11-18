@@ -241,9 +241,7 @@ section.card.fold{padding-bottom:10px}
           </div>
           <details id="w_more" style="margin-top:12px"><summary><strong>Éléments particuliers</strong> : dividendes, épargne salariale, chèques-vacances, frais réels, revenus de remplacement</summary>
           <div class="grid" style="margin-top:10px">
-            <label id="w_div">Dividendes soumis (part &gt; 10 %), si déjà calculée<input type="number" id="y_div" step="1"></label>
-            <label id="w_divtot">Dividendes bruts perçus (dirigeant, conjoint, enfants mineurs)<input type="number" id="y_divtot" step="1"></label>
-            <label id="w_divbase"><span id="l_divbase">Capital social, primes d’émission et comptes courants détenus (seuil de 10 %)</span><input type="number" id="y_divbase" step="1"></label>
+            <label id="w_div">Dividendes soumis (part au-delà du seuil de 10 %, calculée par vos soins)<input type="number" id="y_div" step="1"></label>
             <label id="w_frais">Frais réels déduits fiscalement (case DSSC)<input type="number" id="y_frais" step="1"></label>
             <label>Intéressement, participation, abondement perçus (DSEM / DSPA)<input type="number" id="y_int" step="1"></label>
             <label>Chèques-vacances versés au dirigeant (DSCN)<input type="number" id="y_cv" step="1"></label>
@@ -279,7 +277,7 @@ section.card.fold{padding-bottom:10px}
             <label id="w_csgapp"><span id="l_csgapp"></span><input type="number" id="y_csgapp" step="1"></label>
             <label id="w_csgpaid">CSG-CRDS réellement payée dans l’année (vide = calcul ; à saisir en cas d’impayés, de délais ou de cessation)<input type="number" id="y_csgpaid" step="1"></label>
             <label>Payés à la clôture : Urssaf<input type="number" id="y_payU" step="1"></label>
-            <label>Régularisation N-1 payée à la clôture (exercice décalé ; vide = entièrement payée)<input type="number" id="y_regpaid" step="1"></label>
+            <label hidden>Régularisation N-1 payée à la clôture (exercice décalé ; vide = entièrement payée)<input type="number" id="y_regpaid" step="1"></label>
             <label id="w_appC">Provisionnels appelés : caisse PL<input type="number" id="y_appC" step="1"></label>
             <label id="w_payC">Payés à la clôture : caisse PL<input type="number" id="y_payC" step="1"></label>
           </div>
@@ -305,7 +303,7 @@ section.card.fold{padding-bottom:10px}
         <section class="card" id="c6">
           <h3>6. Contrôle avec la comptabilité</h3>
           <div class="grid"><label><span id="l_cpt646"></span><input type="number" id="y_cpt646" step="1"></label>
-            <label>Exercice décalé : prélèvements Urssaf de l’exercice (grand livre, d’ouverture à clôture)<input type="number" id="y_payex" step="1"></label></div>
+            <label hidden>Exercice décalé : prélèvements Urssaf de l’exercice (grand livre, d’ouverture à clôture)<input type="number" id="y_payex" step="1"></label></div>
           <div id="o6" style="margin-top:12px"></div>
         </section>
 
@@ -390,9 +388,11 @@ section.card.fold{padding-bottom:10px}
 
       <h3>1. Ouvrir l’outil</h3>
       <ol>
-        <li>Ouvrir le fichier <em>cotisations-tns.html</em> du serveur de fichiers avec Chrome ou Edge (pas Firefox ni Safari).</li>
-        <li>En haut de l’écran : cliquer sur « Reconnecter le fichier » (une fois par session). La première fois sur un poste : « Ouvrir le fichier de données » et choisir <em>cotisations-tns-donnees.json</em> sur le serveur de fichiers.</li>
-        <li>La ligne d’état doit afficher « Fichier de données » et le nombre de dossiers. Si elle indique « données conservées dans ce navigateur », rien n’est partagé : ne pas saisir, prévenir le responsable de l’outil au cabinet.</li>
+        <li>Ouvrir le lien de l’outil (page GitHub Pages du dépôt) dans <strong>Chrome ou Edge</strong>, et l’ajouter aux favoris. Firefox et Safari ne savent pas enregistrer dans un fichier de données. On peut aussi télécharger <em>index.html</em> et l’ouvrir depuis le poste ou le serveur du cabinet.</li>
+        <li>La première fois : « Première installation du cabinet » crée le fichier de données (JSON). L’enregistrer sur le serveur de fichiers du cabinet (ou, à défaut, sur le poste). Sur les autres postes : « Ouvrir le fichier de données » et choisir ce même fichier. Ensuite, un clic sur « Reconnecter » à chaque session.</li>
+        <li><strong>Vos données restent chez vous.</strong> L’outil s’exécute dans le navigateur ; GitHub fournit seulement la page et ne reçoit aucune saisie. Seuls sortent du poste le SIREN, si vous utilisez la recherche dans l’Annuaire des entreprises, et la demande de police d’affichage (Google Fonts).</li>
+        <li><strong>Le fichier JSON est le seul endroit où sont vos dossiers.</strong> Il doit faire partie de la sauvegarde du cabinet. Faire aussi régulièrement une copie datée : onglet Synthèse, « Sauvegarder tous les dossiers ».</li>
+        <li>La ligne d’état doit afficher « Fichier de données » et le nombre de dossiers. Si elle indique « données conservées dans ce navigateur », rien n’est enregistré dans le fichier : connecter le fichier avant de saisir.</li>
       </ol>
 
       <h3>2. Créer ou ouvrir un dossier</h3>
@@ -413,13 +413,13 @@ section.card.fold{padding-bottom:10px}
         <li>le contrôle avec la comptabilité (étape 6).</li>
       </ol>
       <p>Tolérance : 5 € (arrondis). Au-delà, ne pas passer l’OD : noter le dossier, l’étape et les deux montants, et prévenir le responsable de l’outil au cabinet. Une fois le dossier validé, l’indiquer dans les notes de la fiche (« contrôlé avec l’ancien logiciel le … »).</p>
-      <p class="note">Déjà vérifiés à l’euro près sur des cas réels : gérant SSI, EI BIC, profession libérale CIPAV, exercice décalé, revenus de remplacement, impayés et cessation.</p>
+      <p class="note">Déjà vérifiés à l’euro près sur des cas réels : gérant SSI, EI BIC, profession libérale CIPAV, revenus de remplacement, impayés et cessation.</p>
 
       <h3>4. Le travail de l’année, pas à pas</h3>
       <p><strong>A. Rassembler les pièces</strong></p>
       <ul>
         <li>L’avis Urssaf de régularisation N-1 reçu dans l’année (pages de calcul et calendrier) et le dernier échéancier de l’année.</li>
-        <li>Le grand livre du compte où sont passés les prélèvements Urssaf du dirigeant (646 ou 6411x selon le plan de comptes), et les comptes touchés par les OD de la clôture précédente (CSG déductible, CFP, 4386 / 4387) ; pour un exercice décalé, les prélèvements Urssaf de l’exercice.</li>
+        <li>Le grand livre du compte où sont passés les prélèvements Urssaf du dirigeant (646 ou 6411x selon le plan de comptes), et les comptes touchés par les OD de la clôture précédente (CSG déductible, CFP, 4386 / 4387).</li>
         <li>La rémunération versée sur l’année civile (gérant) ou le résultat provisoire (EI), les Madelin / PER, les dividendes.</li>
         <li>Pour les libéraux : l’avis de la caisse (CAVEC, CARMF, CARPIMKO…).</li>
       </ul>
@@ -433,7 +433,7 @@ section.card.fold{padding-bottom:10px}
       </ul>
       <p><strong>D. Étape 2, revenus</strong></p>
       <ul>
-        <li>Gérant : rémunération nette versée sur l’année civile ; dont IJ maladie si l’avis montre une assiette sociale supérieure à l’assiette CSG-CRDS ; Madelin payés par la société ou personnellement. Laisser vide le total des cotisations payées par la société : il est calculé. Le bloc « Éléments particuliers » regroupe les dividendes (bruts et base du seuil de 10 %), les frais réels, l’épargne salariale, les chèques-vacances et les IJ. Si des Madelin ou PER sont versés, les ventiler dans « Plafonds Madelin / PER » (retraite, prévoyance et santé, perte d’emploi) pour le calcul de la fraction non déductible.</li>
+        <li>Gérant : rémunération nette versée sur l’année civile ; dont IJ maladie si l’avis montre une assiette sociale supérieure à l’assiette CSG-CRDS ; Madelin payés par la société ou personnellement. Laisser vide le total des cotisations payées par la société : il est calculé. Le bloc « Éléments particuliers » regroupe les dividendes soumis, les frais réels, l’épargne salariale, les chèques-vacances et les IJ. Si des Madelin ou PER sont versés, les ventiler dans « Plafonds Madelin / PER » (retraite, prévoyance et santé, perte d’emploi) pour le calcul de la fraction non déductible.</li>
         <li>EI BIC : résultat comptable provisoire, toutes OD passées sauf celle des cotisations ; réintégrations et déductions fiscales de la liasse (amortissements excédentaires, charges non déductibles, déductions exceptionnelles…), car le revenu brut social part du résultat fiscal ; total des comptes de cotisations avant OD (646, CSG déductible, CFP, Madelin compris) ; Madelin et leur fraction non déductible.</li>
         <li>EI BNC : résultat 2035 avant charges sociales personnelles (BK) et CSG déductible (BV), la CFP restant déduite comme dans la formule officielle du revenu brut social de la 2035 ; Madelin (BZ) et PER (BU) payés.</li>
       </ul>
@@ -441,13 +441,13 @@ section.card.fold{padding-bottom:10px}
       <ul>
         <li>Provisionnels appelés : total annuel de la colonne provisionnelle du dernier échéancier, hors régularisation ; dont CSG-CRDS : ligne CSG/CRDS de l’avis de provisionnelles.</li>
         <li>Payés à la clôture : provisionnels de l’année prélevés jusqu’à la date de clôture, hors régularisation N-1.</li>
-        <li>Clôture autre que le 31/12 : régularisation N-1 payée à la clôture (colonne régularisation de l’échéancier, jusqu’à la date de clôture).</li>
+        
         <li>Caisse libérale qui appelle elle-même : mêmes montants côté caisse, et complémentaire et invalidité-décès d’après son avis.</li>
       </ul>
       <p><strong>F. Étape 3, lecture</strong> : vérifier l’assiette et le détail ligne par ligne. Contrôle rapide : la projection de l’étape 8 doit retrouver la première échéance de l’année suivante annoncée par l’Urssaf en bas de son calendrier.</p>
       <p><strong>G. Étape 4</strong> : reporter les cases sur la déclaration de revenus ou la liasse.</p>
-      <p><strong>H. Étape 5</strong> : passer l’écriture proposée, à extourner à l’ouverture de l’exercice suivant.</p>
-      <p><strong>I. Étape 6</strong> : saisir le solde des comptes de cotisations après OD (et, pour un exercice décalé, les prélèvements de l’exercice). Écart attendu : 5 € au plus.</p>
+      <p><strong>H. Étape 5</strong> : passer les écritures proposées. EI et BNC : ventilation des cotisations payées par nature (CSG déductible, CSG non déductible et CRDS au 108, CFP, CURPS) en journal OD ; charges à payer par nature en journal EX, à extourner à l’ouverture. Gérant : charge à payer globale en journal EX.</p>
+      <p><strong>I. Étape 6</strong> : saisir le solde des comptes de cotisations après OD. Écart attendu : 5 € au plus.</p>
       <p><strong>J. Étape 7</strong> : « Imprimer la fiche » (aussi dans le bandeau), l’enregistrer en PDF dans le dossier comptable ; copier le texte pour le client.</p>
       <p><strong>K. Étape 8</strong> : échéancier de l’année et projection de l’année suivante, à transmettre au client si utile.</p>
       <p><strong>L. Enregistrer</strong> : bouton du bandeau, doré tant qu’il reste des modifications non enregistrées.</p>
@@ -460,13 +460,13 @@ section.card.fold{padding-bottom:10px}
 
       <h3>6. Cas particuliers</h3>
       <ul>
-        <li><strong>Exercice décalé (gérant)</strong> : rémunération de l’exercice traitée comme celle de l’année civile, cotisations de l’année entière sans prorata ; saisir les provisionnels payés et la régularisation N-1 payée jusqu’à la clôture, et les prélèvements de l’exercice pour le contrôle de l’étape 6. Les prélèvements d’octobre à décembre de l’année précédente soldent la charge à payer précédente.</li>
+        <li><strong>Exercice décalé</strong> : non géré dans cette version de test. Le calcul social reste établi sur l’année civile, mais le rattachement comptable des cotisations à la période de l’exercice doit être fait à part.</li>
         <li><strong>Revenus de remplacement (IJ)</strong> : les saisir dans le champ dédié ; ils sortent de l’assiette CSG-CRDS et entrent dans l’assiette sociale après abattement.</li>
         <li><strong>Impayés, délais, cessation, échéancier modifié</strong> : ouvrir « Paiements réels de l’année » (provisionnelle avant et après recalcul, montants appelés, impayés au 31/12), ou saisir directement le total payé et la CSG-CRDS payée.</li>
         <li><strong>Plusieurs estimations dans l’année</strong> : saisir directement le total payé et la CSG-CRDS payée d’après l’échéancier de fin d’année.</li>
         <li><strong>Arriérés d’années antérieures</strong> : hors calcul de l’année ; les traiter en comptabilité (reprise de provision) ; pour la case 1GB, forcer le total payé et la CSG-CRDS payée en y incluant les arriérés réglés dans l’année.</li>
-        <li><strong>Dividendes (gérant ou EI à l’IS)</strong> : saisir les dividendes bruts perçus (dirigeant, conjoint, enfants mineurs) et la base du seuil : capital social, primes d’émission et comptes courants détenus pour un gérant ; bénéfice net de l’exercice pour une EI à l’IS ; pour une EIRL à l’IS, le plus élevé du patrimoine affecté (fin d’exercice) ou du bénéfice net. L’outil retient la part au-delà de 10 % (art. L131-6 CSS). Le champ « dividendes soumis » reste utilisable si la part est déjà calculée.</li>
-        <li><strong>EI ou EIRL ayant opté pour l’IS</strong> : statut dédié, traité comme un gérant : saisir la rémunération versée sur l’année civile ; les cotisations payées par l’entreprise sont calculées ; case 1GB. Seul le seuil des dividendes diffère (bénéfice net, ou patrimoine affecté pour une EIRL s’il est supérieur).</li>
+        <li><strong>Dividendes (gérant ou EI à l’IS)</strong> : saisir directement la part soumise, calculée par vos soins au-delà du seuil de 10 % (art. L131-6 CSS) : capital social, primes d’émission et comptes courants détenus pour un gérant ; bénéfice net pour une EI à l’IS ; le plus élevé du patrimoine affecté ou du bénéfice net pour une EIRL à l’IS.</li>
+        <li><strong>EI ou EIRL ayant opté pour l’IS</strong> : statut dédié, traité comme un gérant : saisir la rémunération versée sur l’année civile ; les cotisations payées par l’entreprise sont calculées ; case 1GB. Seul le seuil des dividendes diffère (voir ci-dessus).</li>
         <li><strong>Intéressement, participation, abondement (DSEM / DSPA)</strong> : soumis à la seule CSG-CRDS ; l’outil les ajoute au revenu brut social puis les retire de l’assiette des cotisations.</li>
         <li><strong>Chèques-vacances (DSCN)</strong> : soumis en totalité à la CSG-CRDS ; déduits de l’assiette des cotisations dans la limite de 30 % du SMIC brut mensuel (paramètre annuel).</li>
         <li><strong>Frais réels du gérant (DSSC)</strong> : déduits du revenu brut social, donc de l’assiette des cotisations et de la CSG-CRDS.</li>
@@ -487,7 +487,7 @@ section.card.fold{padding-bottom:10px}
 
       <h3>8. Ce que l’outil ne fait pas</h3>
       <ul>
-        <li>Micro-entrepreneurs, début d’activité, ACRE, prorata d’une année incomplète, conjoint collaborateur (hors CFP).</li>
+        <li>Micro-entrepreneurs, début d’activité, ACRE, prorata d’une année incomplète, conjoint collaborateur (hors CFP), exercice décalé.</li>
         <li>Calcul automatique des classes CAVEC et des autres caisses libérales (sauf CIPAV, taux à confirmer).</li>
         <li>Abondements d’épargne retraite d’entreprise dans le plafond retraite Madelin / PER ; option pour les créances acquises en BNC.</li>
         <li>Associés de sociétés à l’IR.</li>
@@ -499,7 +499,7 @@ section.card.fold{padding-bottom:10px}
       <ul>
         <li><strong>Chaque année, en janvier :</strong> onglet Paramètres, « Ajouter l’année suivante », mettre à jour le PASS, l’assiette minimale de retraite (450 Smic horaire) et les taux s’ils changent, puis enregistrer.</li>
         <li><strong>Chaque mois :</strong> onglet Synthèse, « Sauvegarder tous les dossiers » et classer le fichier daté. Vérifier que le fichier de données fait partie de la sauvegarde du serveur.</li>
-        <li><strong>Nouvelle version de l’outil :</strong> remplacer seulement le fichier HTML sur le serveur ; le fichier de données ne change pas.</li>
+        <li><strong>Nouvelle version de l’outil :</strong> le lien GitHub ouvre toujours la dernière version (actualiser la page) ; si vous utilisez un fichier téléchargé, le remplacer. Le fichier de données ne change pas.</li>
         <li><strong>Anomalie :</strong> noter le dossier, l’année et l’écart constaté, et le signaler, avec l’avis Urssaf concerné, à LGC Expertise, qui centralise les retours de la version de test.</li>
       </ul>
 
@@ -507,9 +507,9 @@ section.card.fold{padding-bottom:10px}
       <p>Art. L131-6 CSS ; décrets n° 2024-688 du 5 juillet 2024 et n° 2025-708 du 25 juillet 2025 (assiette) ; art. 62, 154 bis et 154 quinquies CGI ; BOI-RSA-GER-20 (rémunérations des gérants) ; notices 2033-NOT-SD et 2035-NOT-SD 2026 (revenu brut social) ; notice 2041 DRI et guide Urssaf de la déclaration sociale et fiscale des revenus 2025.</p>
       <h3>11. Historique des versions</h3>
       <ul>
-        <li><strong>Version 1.6 (18 novembre 2026).</strong> Statut EI à l’IS ; dividendes (calcul de la part au-delà de 10 %), intéressement, participation et abondement, chèques-vacances, frais réels du gérant (cases DSSC, DSEM, DSCN) ; réintégrations fiscales en BIC ; règle de la CFP selon la liasse ; sommaire latéral, bandeau de résultats avec boutons Enregistrer et Imprimer, étapes repliables ; icône ; version déplacée en pied de page. ; plafonds Madelin / PER (art. 154 bis CGI) et fraction non déductible ; EIRL à l’IS (seuil des dividendes sur le patrimoine affecté)</li>
+        <li><strong>Version 1.6 (18 novembre 2026).</strong> Statut EI à l’IS ; dividendes soumis en saisie directe, intéressement, participation et abondement, chèques-vacances, frais réels du gérant (cases DSSC, DSEM, DSCN) ; réintégrations fiscales en BIC ; règle de la CFP selon la liasse ; sommaire latéral, bandeau de résultats avec boutons Enregistrer et Imprimer, étapes repliables ; icône ; version déplacée en pied de page. ; plafonds Madelin / PER (art. 154 bis CGI) et fraction non déductible ; EIRL à l’IS (seuil des dividendes sur le patrimoine affecté) ; écritures EI et BNC ventilées par nature (CSG déductible, CSG non déductible, CFP, CURPS) avec journaux OD et EX</li>
         <li><strong>Version 1.5 (17 novembre 2026).</strong> Mode d’emploi refondu (rodage, pas à pas, cas particuliers) ; contrôles de l’étape 5 et de l’étape 6 adaptés à l’exercice décalé (champ « prélèvements de l’exercice »).</li>
-        <li><strong>Version 1.4 (17 novembre 2026).</strong> Exercice décalé : champ « Régularisation N-1 payée à la clôture » ; la charge à payer reprend le définitif de l’année moins les provisionnels payés, plus la régularisation N-1 restant à payer (sans prorata, CSG non déductible comprise pour un gérant).</li>
+        <li><strong>Version 1.4 (17 novembre 2026).</strong> Exercice décalé (réservé à la version cabinet, non inclus dans la version de test).</li>
         <li><strong>Version 1.3 (17 novembre 2026).</strong> Revenus de remplacement (IJ maladie fiscalisées) : exclus de l’assiette CSG-CRDS et réintégrés dans l’assiette sociale après abattement de 26 %, comme l’Urssaf (contrôlé à l’euro sur un avis 2025).</li>
         <li><strong>Version 1.2 (3 novembre 2026).</strong> Onglet Urssaf : bouton « Créer les dossiers manquants » pour les comptes non rapprochés (montants de l’année repris, statut déduit de la catégorie Urssaf et à vérifier).</li>
         <li><strong>Version 1.1 (novembre 2026).</strong> Onglet Urssaf (relevé automatique des données Urssaf), non inclus dans la version de test.</li>
@@ -676,11 +676,7 @@ function autoCot(cl,y,year){
   const prov=num(y.appU)+num(y.appC), mad=num(y.madsoc);
   return {val:prov+rp.reg+mad,prov,reg:rp.reg,mad,src:rp.src,yp:rp.yp};
 }
-function divSoumis(cl,y){
-  if(!isGer(cl.regime)) return 0;
-  if(y.divtot!=null&&y.divtot!=="") return Math.max(0,Math.round(num(y.divtot)-0.10*num(y.divbase)));
-  return num(y.div);
-}
+function divSoumis(cl,y){ return isGer(cl.regime)?num(y.div):0; }
 function extraR(cl,y){ return num(y.int)+num(y.cv)-(isGer(cl.regime)?num(y.frais):0); }
 function computeR(cl,y,p,year){
   const div=divSoumis(cl,y), ex=extraR(cl,y);
@@ -814,7 +810,7 @@ function showDetail(){
   $("f_cloture").value=c.cloture||""; $("f_compta").value=c.compta||"engagement"; $("f_tp").value=c.tp||"4387"; $("f_notes").value=c.notes||"";
   curYear=$("f_annee").value; const y=(c.annees||{})[curYear]||{};
   $("y_mode").value=y.mode||"ajout";
-  ["base","cotded","retr","div","rcman","idman","curps","appU","payU","appC","payC","csgapp","csgreg","madperso","madsoc","regprev","avisdef","cap1","cpt646","asvman","snir","honos","pecaf","csgpaid","e1tot","e1csg","e1app","e2tot","e2csg","e2app","impaye","ij","regpaid","payex","divtot","divbase","frais","int","cv","madret","madprev","madchom"].forEach(k=>$("y_"+k).value=(y[k]??""));
+  ["base","cotded","retr","div","rcman","idman","curps","appU","payU","appC","payC","csgapp","csgreg","madperso","madsoc","regprev","avisdef","cap1","cpt646","asvman","snir","honos","pecaf","csgpaid","e1tot","e1csg","e1app","e2tot","e2csg","e2app","impaye","ij","regpaid","payex","frais","int","cv","madret","madprev","madchom"].forEach(k=>$("y_"+k).value=(y[k]??""));
   if(["e1app","e2app"].some(k=>y[k]!=null)) $("w_real").open=true;
   $("w_more").open=["div","divtot","divbase","frais","int","cv","ij"].some(k=>y[k]!=null&&y[k]!=="");
   $("w_mad").open=["madret","madprev","madchom"].some(k=>y[k]!=null&&y[k]!=="");
@@ -827,7 +823,7 @@ function fam(reg){return isGer(reg)?"G":((reg==="pl_ssi"||reg==="pl_cnavpl"||reg
 function toggleFields(){
   const reg=$("f_regime").value, mode=$("y_mode").value, pl=(reg==="pl_cnavpl"||reg==="gerant_pl"||reg==="pamc"), F=fam(reg), isG=F==="G";
   const show=(id,on)=>$(id).classList.toggle("hidden",!on);
-  show("w_caisse",pl||reg==="pamc"); show("w_div",isG); show("w_divtot",isG); show("w_divbase",isG); show("w_frais",isG); $("l_divbase").textContent = reg==="ei_is" ? "Bénéfice net de l’exercice, ou patrimoine affecté s’il est supérieur pour une EIRL (seuil de 10 %)" : "Capital social, primes d’émission et comptes courants détenus (seuil de 10 %)"; show("w_pamc",reg==="pamc"); show("w_pamcY",reg==="pamc"); show("w_asv",reg==="pamc"); show("w_pecaf",reg==="pamc"&&$("f_pamc").value==="medecin1");
+  show("w_caisse",pl||reg==="pamc"); show("w_div",isG); show("w_frais",isG); show("w_pamc",reg==="pamc"); show("w_pamcY",reg==="pamc"); show("w_asv",reg==="pamc"); show("w_pecaf",reg==="pamc"&&$("f_pamc").value==="medecin1");
   show("w_csgapp",F!=="BIC"); show("w_csgreg",F!=="BIC");
   show("w_cotded",mode==="ajout"); show("w_csgpaid",F!=="BIC"); show("w_retr",mode!=="R"); show("w_manuel",pl);
   const sepCaisse = pl && $("f_caisse").value!=="CIPAV";
@@ -853,7 +849,7 @@ function readForm(){
   c.nom=$("f_nom").value.trim(); c.siren=$("f_siren").value.trim(); c.dirigeant=$("f_dirigeant").value.trim(); c.decl=$("f_decl").value; c.regime=$("f_regime").value; c.pamc=$("f_pamc").value; c.cfp=$("f_cfp").value; c.caisse=$("f_caisse").value;
   c.cloture=$("f_cloture").value.trim(); c.compta=$("f_compta").value; c.tp=$("f_tp").value; c.notes=$("f_notes").value;
   c.annees=c.annees||{}; const y={mode:$("y_mode").value};
-  ["base","cotded","retr","div","rcman","idman","curps","appU","payU","appC","payC","csgapp","csgreg","madperso","madsoc","regprev","avisdef","cap1","cpt646","asvman","snir","honos","pecaf","csgpaid","e1tot","e1csg","e1app","e2tot","e2csg","e2app","impaye","ij","regpaid","payex","divtot","divbase","frais","int","cv","madret","madprev","madchom"].forEach(k=>{const v=$("y_"+k).value; if(v!=="") y[k]=num(v);});
+  ["base","cotded","retr","div","rcman","idman","curps","appU","payU","appC","payC","csgapp","csgreg","madperso","madsoc","regprev","avisdef","cap1","cpt646","asvman","snir","honos","pecaf","csgpaid","e1tot","e1csg","e1app","e2tot","e2csg","e2app","impaye","ij","regpaid","payex","frais","int","cv","madret","madprev","madchom"].forEach(k=>{const v=$("y_"+k).value; if(v!=="") y[k]=num(v);});
   y.ech={per:$("e_per").value,jour:$("e_jour").value,mois:$("e_mois").value,base:$("e_base").value,n1mois:$("e_n1mois").value};
   ["e0","r","reg","n1e0"].forEach(k=>{const v=$("e_"+k).value; if(v!=="") y.ech[k]=num(v);});
   c.annees[curYear]=y; c.maj=new Date().toISOString();
@@ -869,9 +865,9 @@ function renderResults(){
   let ecr="";
   if(!tres){
     const amt=Math.abs(cap), over=cap<-0.5;
-    const L=(cpt,lib,sens,m)=>`${cpt.padEnd(5)}${lib.padEnd(42)}${sens} ${fmt(m).padStart(12)}`;
+    const L=(cpt,lib,sens,m)=>`EX  ${cpt.padEnd(8)}${lib.padEnd(42)}${sens} ${fmt(m).padStart(12)}`;
     const ctr = over ? (c.tp==="486"?["486","Charges constatées d’avance"]:["4387","Organismes sociaux - produits à recevoir"]) : ["4386","Organismes sociaux - charges à payer"];
-    const ch=L("646","Cotisations sociales personnelles",over?"C":"D",amt), cp=L(ctr[0],ctr[1],over?"D":"C",amt);
+    const ch=L("646000","Cotisations sociales personnelles",over?"C":"D",amt), cp=L(ctr[0],ctr[1],over?"D":"C",amt);
     ecr = over ? cp+"\n"+ch : ch+"\n"+cp;
     if(amt<=0.5) ecr="Aucune écriture : définitif égal au payé.";
   }
@@ -913,7 +909,6 @@ function renderResults(){
       (num(r.y.frais)?tr("Case "+(d2?"DSSD":"DSSC")+" : frais réels",fmt(num(r.y.frais))):"")+
       (num(r.y.int)?tr("Case "+(d2?"DSEN":"DSEM")+" : intéressement, participation, abondement",fmt(num(r.y.int))):"")+
       (num(r.y.cv)?tr("Case "+(d2?"DSDN":"DSCN")+" : chèques-vacances",fmt(num(r.y.cv))):"")+
-      (r.y.divtot!=null&&r.y.divtot!==""?tr("pour mémoire : dividendes bruts "+fmt(num(r.y.divtot))+", seuil de 10 % "+fmt(Math.round(0.10*num(r.y.divbase))),""):"")+
       madRows(madG)+
       tr("Case "+code+" de la 2042",g1x==null?"Saisir rémunération, CSG provisionnelle et régularisation N-1":fmt(g1x),"tot")+
       (hasApp?tr("Pour mémoire : régularisation CSG-CRDS "+curYear+", qui jouera sur la case "+code+" "+(+curYear+1),fmt(csgOf(r)-num(r.y.csgapp))):"");
@@ -951,11 +946,10 @@ function renderResults(){
       tr("Résultat fiscal estimé, case "+code+" de la 2042-C-PRO",fmt(Math.abs(resF)),"tot");
     fiscRecap=["","Résultat fiscal estimé "+curYear+" : "+fmt(resF)+" (case "+code+" de la déclaration complémentaire 2042-C-PRO, à confirmer avec la liasse)"];
     if(!tres){
-      const L=(cpt,lib,sens,m)=>`${cpt.padEnd(5)}${lib.padEnd(42)}${sens} ${fmt(m).padStart(12)}`, out=[];
-      if(ndIn!=null&&Math.abs(ndIn)>0.5){ out.push(L("108","Compte de l’exploitant (CSG ND, CRDS)",ndIn>0?"D":"C",Math.abs(ndIn))); out.push(L("646","Cotisations sociales personnelles",ndIn>0?"C":"D",Math.abs(ndIn))); out.push(""); }
-      if(Math.abs(capD)>0.5){ if(capD>0){ out.push(L("646","Cotisations sociales personnelles","D",capD)); out.push(L("4386","Organismes sociaux - charges à payer","C",capD)); }
-        else { const t=c.tp==="486"?["486","Charges constatées d’avance"]:["4387","Organismes sociaux - produits à recevoir"]; out.push(L(t[0],t[1],"D",-capD)); out.push(L("646","Cotisations sociales personnelles","C",-capD)); } }
-      ecr=out.join("\n")||"Aucune écriture.";
+      const cfpD=mt("cfp"), curD=mt("curps"), csgdD=mt("csgd"), sh=appN>0?Math.min(1,payN/appN):0, full=appN>0&&payN>=appN-1;
+      const csgdPaidN=num(r.y.csgapp)*sh*pY.csg_ded/(pY.csg_ded+pY.csg_nd+pY.crds), cfpPaid=full?cfpD:0, curPaid=full?curD:0;
+      const capCsgd=Math.round(csgdD-csgdPaidN), capCfp=Math.round(cfpD-cfpPaid), capCur=Math.round(curD-curPaid), capSoc=capD-capCsgd-capCfp-capCur;
+      ecr=ecrEI({ded:hasPay?dedPay:null,nd:ndIn,cfp:cfpPaid,cur:curPaid},{soc:capSoc,csgd:capCsgd,cfp:capCfp,cur:capCur},c);
     }
   } else {
     const rp=regPrevOf(c,r.y,curYear), okP=hasPay&&rp.reg!=null;
@@ -973,6 +967,7 @@ function renderResults(){
       tr("CSG non déductible et CRDS payées (non déductibles)",okP?fmt(ndPay):"—")+
       (okP?madRows(mN):"")+
       tr("Résultat fiscal estimé, case "+code+" de la 2042-C-PRO",okP?fmt(Math.abs(resF)):"Saisir la CSG provisionnelle et la régularisation N-1","tot");
+    if(okP) ecr=ecrEI({ded:dedPay,nd:ndPay,cfp:cfpD,cur:mt("curps")},null,c);
     if(okP) fiscRecap=["","Résultat BNC estimé "+curYear+" : "+fmt(resF)+" (case "+code+" de la déclaration complémentaire 2042-C-PRO, à confirmer avec la 2035)"];
     if(!tres) fiscRows+=tr("Option pour les créances acquises (art. 93 A CGI) : non gérée, calcul sur les montants payés","");
   }
@@ -1050,9 +1045,9 @@ function renderResults(){
   else if(F==="BIC") reint=(bicOD&&bicOD.ndIn!=null?tr("CSG non déductible et CRDS : virées au 108 par l’OD, aucune réintégration",""):tr("CSG non déductible et CRDS de l’année, si comptabilisées en 646 (estimation)",fmt(r.nonded)))+(num(r.y.madperso)?tr("Fraction non déductible des Madelin / PER",fmt(num(r.y.madperso))):"");
   else reint=tr("CSG non déductible et CRDS payées dans l’année, si comptabilisées en charges (rien si passées au 108)",hasPay?fmt(ndPay):"—")+tr("Madelin / PER au-delà des plafonds de l’art. 154 bis CGI","à calculer");
   $("s5").innerHTML=`<h3>5. OD comptables et réintégrations extracomptables</h3>
-        ${tres?`<p class="note" style="margin-top:12px">Comptabilité recettes-dépenses : les cotisations sont déductibles l’année de leur paiement, pas de charge à payer.</p>`:
+        ${tres?`<p class="note" style="margin-top:12px">Comptabilité recettes-dépenses : les cotisations sont déductibles l’année de leur paiement, pas de charge à payer.</p>${ecr?`<h3 style="margin-top:16px">Écriture de ventilation suggérée</h3><pre class="ecr">${esc(ecr)}</pre><p class="note">Comptes à adapter au plan de comptes du dossier.</p>`:""}`:
       `<h3 style="margin-top:16px">Écriture de clôture suggérée</h3><pre class="ecr">${esc(ecr)}</pre>
-       <p class="note">Écriture à extourner à l’ouverture. « Payé à la clôture » = cotisations au titre de ${curYear} passées en charges dans l’exercice, hors régularisation ${+curYear-1}. ${(isGer(c.regime)||(bicOD&&bicOD.ndIn!=null))?"":"Part non déductible (CSG 2,4 % et CRDS) des cotisations de l’année : "+fmt(r.nonded)+", à réintégrer si elle est passée en 646. "}Comptes à adapter au plan de comptes du dossier.</p>`}
+       <p class="note">Journal OD : ventilation définitive ; journal EX : charges à payer, à extourner à l’ouverture. « Payé à la clôture » = cotisations au titre de ${curYear} passées en charges dans l’exercice, hors régularisation ${+curYear-1}. ${(isGer(c.regime)||(bicOD&&bicOD.ndIn!=null))?"":"Part non déductible (CSG 2,4 % et CRDS) des cotisations de l’année : "+fmt(r.nonded)+", à réintégrer si elle est passée en 646. "}Comptes à adapter au plan de comptes du dossier.</p>`}
 
     ${ecN1!=null&&Math.abs(ecN1)>0.5&&!r.regUnp&&!(r.y.regpaid!=null&&r.y.regpaid!=="")?`<p class="note">Écart entre la régularisation ${yPrev} et la charge à payer ${yPrev} : ${fmt(ecN1)}, absorbé par l’extourne et le règlement de la régularisation.</p>`:""}
     <h3 style="margin-top:14px">Réintégrations extracomptables</h3><div class="tbl-wrap"><table>${reint}</table></div>`;
@@ -1074,6 +1069,29 @@ function renderResults(){
   renderResume(c,r); renderNav(c,r); applyFold();
   $("btnPrint").onclick=()=>printFiche(c);
   $("copyRecap").onclick=async()=>{const t=$("recap"); try{await navigator.clipboard.writeText(t.value); $("copyStatus").textContent="Copié";}catch(e){t.select(); try{document.execCommand("copy"); $("copyStatus").textContent="Copié";}catch(_){$("copyStatus").textContent="Sélectionnez le texte et copiez-le";}}};
+}
+
+/* ---------- Écritures EI : ventilation (OD) et charges à payer (EX) ---------- */
+function ecrEI(paid,cap,c){
+  const L=(j,cpt,lib,sens,m)=>`${j.padEnd(4)}${cpt.padEnd(8)}${lib.padEnd(44)}${sens} ${fmt(m).padStart(12)}`, out=[];
+  const mv=(j,cpt,lib,m,ctr,ctrLib)=>{ if(m==null||Math.abs(m)<0.5) return; const neg=m<0, a=Math.abs(m);
+    out.push(L(j,cpt,lib,neg?"C":"D",a)); out.push(L(j,ctr,ctrLib,neg?"D":"C",a)); out.push(""); };
+  out.push("Ventilation des cotisations payées dans l’année, passées en 646 (journal OD) :");
+  mv("OD","637810","CSG déductible",paid.ded,"646000","Cotisations sociales personnelles");
+  mv("OD","108000","Compte de l’exploitant (CSG non déd., CRDS)",paid.nd,"646000","Cotisations sociales personnelles");
+  mv("OD","633300","Contribution formation professionnelle",paid.cfp,"646000","Cotisations sociales personnelles");
+  mv("OD","637800","CURPS",paid.cur,"646000","Cotisations sociales personnelles");
+  if(cap){
+    out.push("Charges à payer, à extourner à l’ouverture (journal EX) :");
+    const pr=c.tp==="486"?["486000","Charges constatées d’avance"]:null;
+    const cp=(cpt,lib,m,ctr,ctrLib,ctrP)=>{ if(m==null||Math.abs(m)<0.5) return; if(m>0){ out.push(L("EX",cpt,lib,"D",m)); out.push(L("EX",ctr,ctrLib,"C",m)); }
+      else { const t=pr||ctrP; out.push(L("EX",t[0],t[1],"D",-m)); out.push(L("EX",cpt,lib,"C",-m)); } out.push(""); };
+    cp("646000","Cotisations sociales personnelles",cap.soc,"438600","Organismes sociaux - charges à payer",["438700","Organismes sociaux - produits à recevoir"]);
+    cp("637810","CSG déductible",cap.csgd,"448600","État - charges à payer",["448700","État - produits à recevoir"]);
+    cp("633300","Contribution formation professionnelle",cap.cfp,"448600","État - charges à payer",["448700","État - produits à recevoir"]);
+    cp("637800","CURPS",cap.cur,"448600","État - charges à payer",["448700","État - produits à recevoir"]);
+  }
+  return out.join("\n").trim()||"Aucune écriture.";
 }
 
 /* ---------- Sommaire, bandeau, repli des étapes ---------- */
